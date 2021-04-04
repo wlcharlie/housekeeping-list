@@ -1,0 +1,118 @@
+/* 18row 2480 3508*/
+
+html,
+body {
+  height: 1030px;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+h1 {
+  padding: 0.1em;
+  padding-top: 0.5em;
+  color: white;
+  background-color: #00a0af;
+}
+
+.input-group {
+  padding: 0.3em 0.5em;
+}
+
+.status-section {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0;
+}
+
+.status-count {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  background-color: lightgreen;
+  border: 2px solid rgb(144, 238, 144, 50%);
+  border-radius: 20em;
+  margin: 0 2rem;
+}
+
+.status {
+  margin: 0 2rem;
+}
+
+main {
+  display: flex;
+  font-weight: bolder;
+}
+
+.room-buttons {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  min-height: 235px;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  margin: 0.4em 0;
+  background-color: #eeeeee;
+}
+
+.buttons {
+  padding: 0.8em 0.2em;
+  margin: 0.5em;
+}
+
+.delete-mode {
+  border: 2px dashed red;
+  background-color: salmon;
+}
+
+.btn-rows,
+.btn {
+  margin: 0.2em;
+}
+
+table {
+  width: 45%;
+  margin: 0.5em auto;
+}
+
+table,
+th,
+td {
+  border-collapse: collapse;
+  border-top: 2px solid #999999;
+  border-bottom: 2px solid #999999;
+  border-left: 1px solid #999999;
+  border-right: 1px solid #999999;
+}
+
+th {
+  background-color: #e3e3e3;
+}
+
+td:hover {
+  background-color: #eee;
+}
+
+.a {
+  background-color: #eee999;
+}
+
+.b {
+  background-color: #f5f5f5;
+}
+
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+  }
+}

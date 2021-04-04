@@ -1,0 +1,113 @@
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <header>
+    <h1><span class="today"></span>Today's HouseKeeping</h1>
+  </header>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Task</span>
+    </div>
+    <textarea class="form-control" aria-label="With textarea" placeholder="其他工作事項……"></textarea>
+  </div>
+  <div class="room-buttons no-print">
+    <section class="buttons no-print">
+      <div class="btn-rows">
+        <button type="button" class="room-btn girl btn btn-secondary" data-key="girlRmDataA" data-color="a">501
+        </button>
+        <button type="button" class="room-btn girl btn btn-secondary" data-key="girlRmDataB" data-color="b">502
+        </button>
+        <button type="button" class="room-btn girl btn btn-secondary" data-key="girlRmDataC" data-color="a">503
+        </button>
+        <button type="button" class="room-btn girl btn btn-secondary" data-key="girlRmDataD" data-color="b">504
+        </button>
+        <button type="button" class="room-btn girl btn btn-secondary" data-key="girlRmDataE" data-color="a">505
+        </button>
+        <button type="button" class="room-btn girl btn btn-secondary" data-key="girlRmDataF" data-color="b">506
+        </button>
+        <button type="button" class="room-btn girl btn btn-secondary" data-key="girlRmDataG" data-color="a">507
+        </button>
+        <button type="button" class="room-btn girl btn btn-secondary" data-key="girlRmDataH" data-color="b">508
+        </button>
+        <button type="button" class="room-btn girl btn btn-secondary" data-key="girlRmDataI" data-color="a">509
+        </button>
+        <button type="button" class="room-btn girl btn btn-secondary" data-key="girlRmDataJ" data-color="b">510
+        </button>
+      </div>
+      <div class="btn-rows">
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataA" data-color="a">601 </button>
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataB" data-color="b">602 </button>
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataC" data-color="a">603 </button>
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataD" data-color="b">604 </button>
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataE" data-color="a">605 </button>
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataF" data-color="b">606 </button>
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataG" data-color="a">607 </button>
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataH" data-color="b">608 </button>
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataI" data-color="a">609 </button>
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataJ" data-color="b">610 </button>
+        <button type="button" class="room-btn mix btn btn-secondary" data-key="mixRmDataK" data-color="a">611 </button>
+        <button type="button" class="room-btn pri btn btn-secondary" data-key="privateRmData" data-color="a">套房
+        </button>
+      </div>
+      <div class="btn-rows">
+        <button type="button" class="all-btn btn btn-primary">ALL (test)</button>
+      </div>
+      <div class="btn-rows">
+        <button type="button" class="del-btn btn btn-danger">Delete Mode </button>
+        <button type="button" class="btn btn-success" onclick="sortTable(), sortTable()">Sort</button>
+      </div>
+    </section>
+  </div>
+  <div class="status-section">
+    <section class="status-count">退房：<span class="status out"></span>(<span class="status pri-out"></span>)</section>
+    <section class="status-count">續住：<span class="status stay"></span>(<span class="status pri-stay"></span>)</section>
+    <section class="status-count">新住：<span class="status new"></span>(<span class="status pri-new"></span>)</section>
+  </div>
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 15%">房號</th>
+          <th style="width: 20%">退</th>
+          <th style="width: 20%">續</th>
+          <th style="width: 20%">新</th>
+          <th style="width: 25%">Note</th>
+        </tr>
+      </thead>
+      <tbody class="left-section">
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 25%">房號</th>
+          <th style="width: 20%">退</th>
+          <th style="width: 20%">續</th>
+          <th style="width: 20%">新</th>
+          <th style="width: 15%">Note</th>
+        </tr>
+        <thead>
+        <tbody class="right-section">
+        </tbody>
+    </table>
+  </main>
+
+  <script src="scirpt.js"></script>
+</body>
