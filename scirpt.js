@@ -59,16 +59,21 @@ const rightSection = document.querySelector(".right-section");
 const roomBtn = document.querySelectorAll(".room-btn");
 const delBtn = document.querySelector(".del-btn");
 let deleteStatus = false;
+let test = [];
 
 const allBtn = document.querySelector(".all-btn");
 
 const main = document.querySelector("main");
+const statusSection = document.querySelector(".status-section")
 const statusCountOut = document.querySelector(".status-count .out");
 const statusCountStay = document.querySelector(".status-count .stay");
 const statusCountNew = document.querySelector(".status-count .new");
 const statusCountPriOut = document.querySelector(".status-count .pri-out");
 const statusCountPriStay = document.querySelector(".status-count .pri-stay");
 const statusCountPriNew = document.querySelector(".status-count .pri-new");
+
+const btnSave = document.querySelector("#btn-save")
+const btnGet = document.querySelector("#btn-get")
 
 function rmStatFormat(room, color, event) {
   let rmStat = `
@@ -114,7 +119,29 @@ function deleteMode() {
   deleteStatus = !deleteStatus;
 }
 
-let test = [];
+function priCount(priCheck) {
+  let check = 0;
+  for (let i = 1; i < priCheck.length; i += 5) {
+    if (priCheck[i].innerText === "V") {
+      check++;
+      statusCountPriOut.innerText = `含套${check}`;
+    }
+  }
+  check = 0;
+  for (let f = 2; f < priCheck.length; f += 5) {
+    if (priCheck[f].innerText === "V") {
+      check++;
+      statusCountPriStay.innerText = `含套${check}`;
+    }
+  }
+  check = 0;
+  for (let k = 3; k < priCheck.length; k += 5) {
+    if (priCheck[k].innerText === "V") {
+      check++;
+      statusCountPriNew.innerText = `含套${check}`;
+    }
+  }
+}
 
 buttons.addEventListener("click", function (event) {
   let target = event.target;
@@ -229,29 +256,19 @@ main.addEventListener("click", function (event) {
   priCount(priCheck);
 });
 
-function priCount(priCheck) {
-  let check = 0;
-  for (let i = 1; i < priCheck.length; i += 5) {
-    if (priCheck[i].innerText === "V") {
-      check++;
-      statusCountPriOut.innerText = `含套${check}`;
-    }
-  }
-  check = 0;
-  for (let f = 2; f < priCheck.length; f += 5) {
-    if (priCheck[f].innerText === "V") {
-      check++;
-      statusCountPriStay.innerText = `含套${check}`;
-    }
-  }
-  check = 0;
-  for (let k = 3; k < priCheck.length; k += 5) {
-    if (priCheck[k].innerText === "V") {
-      check++;
-      statusCountPriNew.innerText = `含套${check}`;
-    }
-  }
-}
+btnSave.addEventListener('click', function () {
+  localStorage.setItem("leftTables", JSON.stringify(leftSection.innerHTML))
+  localStorage.setItem("rightTables", JSON.stringify(rightSection.innerHTML))
+  localStorage.setItem("status", JSON.stringify(statusSection.innerHTML))
+})
+
+btnGet.addEventListener('click', function () {
+  leftSection.innerHTML = JSON.parse(localStorage.getItem("leftTables")).trim()
+  rightSection.innerHTML = JSON.parse(localStorage.getItem("rightTables")).trim()
+  statusSection.innerHTML = JSON.parse(localStorage.getItem("status")).trim()
+  // localStorage.removeItem("tables")
+})
+
 // Edit Table
 
 // Title Date
