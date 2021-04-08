@@ -237,6 +237,10 @@ buttons.addEventListener("click", function (event) {
     test = [];
     leftSection.innerHTML = "";
     rightSection.innerHTML = "";
+
+    roomBtn.forEach((a) => {
+      a.setAttribute("disabled", "");
+    });
   }
 });
 // Buttons and Data input settings
