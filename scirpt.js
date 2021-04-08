@@ -75,6 +75,15 @@ const statusCountPriNew = document.querySelector(".status-count .pri-new");
 const btnSave = document.querySelector("#btn-save")
 const btnGet = document.querySelector("#btn-get")
 
+
+function disabledBtn(event) {
+  if (!event.target.hasAttribute("disabled", "") && event.target.matches(".room-btn")) {
+    event.target.setAttribute("disabled", "")
+  } else {
+    event.target.removeAttribute("disabled", "")
+  }
+}
+
 function rmStatFormat(room, color, event) {
   let rmStat = `
       <tr class="rm${event.target.innerText} ${color}">
@@ -146,16 +155,31 @@ function priCount(priCheck) {
 buttons.addEventListener("click", function (event) {
   let target = event.target;
 
-  if (target === delBtn && test.includes("ALL")) {
+  disabledBtn(event)
+
+  console.log(target)
+
+
+  if (target === delBtn && test.includes("ALL (test)")) {
     deleteMode();
     roomBtn.forEach((a) => {
       a.setAttribute("disabled", "");
     });
-  } else if (target === delBtn) {
+  } else if (target === delBtn && test.includes("ALL (test)")) {
     deleteMode();
     roomBtn.forEach((a) => {
       a.removeAttribute("disabled", "");
     });
+  } else if (target === delBtn) {
+    deleteMode();
+    roomBtn.forEach((a) => {
+      if (a.hasAttribute("disabled", "")) {
+        a.removeAttribute("disabled", "");
+      } else {
+        a.setAttribute("disabled", "")
+      }
+    });
+
   }
 
   if (!test.includes(`${target.innerText}`)) {
@@ -175,6 +199,9 @@ buttons.addEventListener("click", function (event) {
     !deleteStatus &&
     !test.includes(`${target.innerText}`)
   ) {
+    roomBtn.forEach((a) => {
+      a.setAttribute("disabled", "");
+    });
     insertRmData(rooms["girlRmData"], target.dataset.color, event);
     insertRmData(rooms["mixRmData"], target.dataset.color, event);
     insertRmData(rooms["privateRmData"], target.dataset.color, event);
@@ -257,12 +284,19 @@ main.addEventListener("click", function (event) {
 });
 
 btnSave.addEventListener('click', function () {
+  let task = document.querySelector('textarea').value
+  localStorage.setItem("task", JSON.stringify(task))
+
   localStorage.setItem("leftTables", JSON.stringify(leftSection.innerHTML))
   localStorage.setItem("rightTables", JSON.stringify(rightSection.innerHTML))
   localStorage.setItem("status", JSON.stringify(statusSection.innerHTML))
+
+
 })
 
 btnGet.addEventListener('click', function () {
+  document.querySelector('textarea').value = JSON.parse(localStorage.getItem("task"))
+
   leftSection.innerHTML = JSON.parse(localStorage.getItem("leftTables")).trim()
   rightSection.innerHTML = JSON.parse(localStorage.getItem("rightTables")).trim()
   statusSection.innerHTML = JSON.parse(localStorage.getItem("status")).trim()
