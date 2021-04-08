@@ -241,6 +241,8 @@ buttons.addEventListener("click", function (event) {
     roomBtn.forEach((a) => {
       a.setAttribute("disabled", "");
     });
+
+    // test
   }
 });
 // Buttons and Data input settings
